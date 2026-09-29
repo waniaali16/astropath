@@ -1,6 +1,18 @@
 # AstroPath 🌙
 
 AstroPath is an interactive space mission planner that visualises planetary motion and simulated interplanetary missions through an animated Solar System.
+## Live Demo
+
+[Launch AstroPath](https://waniaali16.github.io/astropath/)
+
+## Project Preview
+
+### Mission Simulation
+![AstroPath Mission Simulation](astro1.png)
+
+### Mission in Progress
+![AstroPath Mission in Progress](astro2.png)
+
 
 ## Features
 
