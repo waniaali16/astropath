@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AstroPath | Interactive Space Mission Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+            <span class="logo-icon"></span>
+            AstroPath
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Simulation Online
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <p class="eyebrow">
+                INTERACTIVE ORBITAL VISUALISATION
+            </p>
+
+            <h1>
+                Plan a journey<br>
+                <span>through space.</span>
+            </h1>
+
+            <p class="hero-text">
+                Explore planetary motion, calculate interplanetary
+                distances and launch simulated missions across
+                the Solar System.
+            </p>
+
+        </section>
+
+
+        <!-- ================= MISSION CONTROL ================= -->
+
+        <section class="mission-panel">
+
+            <div>
+
+                <p class="panel-label">
+                    MISSION CONTROL
+                </p>
+
+                <h2>
+                    Configure Mission
+                </h2>
+
+            </div>
+
+
+            <div class="controls">
+
+                <!-- ORIGIN -->
+
+                <div class="control">
+
+                    <label for="origin">
+                        Origin
+                    </label>
+
+                    <select id="origin">
+
+                        <option value="earth">
+                            Earth
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <!-- DESTINATION -->
+
+                <div class="control">
+
+                    <label for="destination">
+                        Destination
+                    </label>
+
+                    <select id="destination">
+
+                        <option value="mars">
+                            Mars
+                        </option>
+
+                        <option value="venus">
+                            Venus
+                        </option>
+
+                        <option value="mercury">
+                            Mercury
+                        </option>
+
+                        <option value="jupiter">
+                            Jupiter
+                        </option>
+
+                        <option value="saturn">
+                            Saturn
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- LAUNCH BUTTON -->
+
+                <button id="launchButton">
+
+                    Launch Mission
+
+                    <span>
+                        ↗
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SIMULATION ================= -->
+
+        <section class="simulation-layout">
+
+
+            <!-- SOLAR SYSTEM -->
+
+            <div class="space-card">
+
+
+                <div class="space-header">
+
+                    <div>
+
+                        <p class="panel-label">
+                            LIVE SIMULATION
+                        </p>
+
+                        <h2>
+                            Solar System
+                        </h2>
+
+                    </div>
+
+
+                    <!-- SPEED -->
+
+                    <div class="speed-control">
+
+                        <label for="speedSlider">
+
+                            Simulation Speed
+
+                            <span id="speedValue">
+                                1x
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="range"
+                            id="speedSlider"
+                            min="1"
+                            max="5"
+                            value="1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- SPACE AREA -->
+
+                <div id="solarSystem">
+
+
+                    <!-- STARS -->
+
+                    <div id="stars"></div>
+
+
+                    <!-- SUN -->
+
+                    <div class="sun">
+
+                        <div class="sun-core"></div>
+
+                    </div>
+
+
+                    <!-- MISSION ROUTE -->
+
+                    <svg
+                        id="missionPath"
+                        viewBox="0 0 1000 650"
+                        preserveAspectRatio="none"
+                    >
+
+                        <path id="routeLine"></path>
+
+                    </svg>
+
+
+                    <!-- ROCKET -->
+
+                    <div id="rocket">
+                        🚀
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= FLIGHT DATA ================= -->
+
+            <aside class="mission-data">
+
+
+                <div>
+
+                    <p class="panel-label">
+                        MISSION ANALYTICS
+                    </p>
+
+                    <h2>
+                        Flight Data
+                    </h2>
+
+                </div>
+
+
+                <!-- DESTINATION -->
+
+                <div class="data-card">
+
+                    <span>
+                        Destination
+                    </span>
+
+                    <strong id="destinationData">
+                        Mars
+                    </strong>
+
+                </div>
+
+
+                <!-- DISTANCE -->
+
+                <div class="data-card">
+
+                    <span>
+                        Current Distance
+                    </span>
+
+                    <strong id="distanceData">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <!-- TRAVEL TIME -->
+
+                <div class="data-card">
+
+                    <span>
+                        Estimated Travel
+                    </span>
+
+                    <strong id="travelData">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <!-- POSITION -->
+
+                <div class="data-card">
+
+                    <span>
+                        Orbital Position
+                    </span>
+
+                    <strong id="positionData">
+                        Ready
+                    </strong>
+
+                </div>
+
+
+                <!-- ================= MISSION STATUS ================= -->
+
+                <div class="mission-status">
+
+                    <span>
+                        MISSION STATUS
+                    </span>
+
+                    <strong id="missionStatus">
+                        Awaiting Launch
+                    </strong>
+
+
+                    <div class="progress-track">
+
+                        <div id="missionProgress"></div>
+
+                    </div>
+
+
+                    <small id="progressText">
+
+                        Select a destination and launch the mission.
+
+                    </small>
+
+                </div>
+
+
+            </aside>
+
+        </section>
+
+
+        <!-- ================= TECHNICAL SECTION ================= -->
+
+        <section class="technical-section">
+
+
+            <div>
+
+                <p class="panel-label">
+                    MISSION COMPUTATION
+                </p>
+
+                <h2>
+                    What AstroPath Calculates
+                </h2>
+
+            </div>
+
+
+            <div class="technical-grid">
+
+
+                <!-- ORBIT -->
+
+                <article>
+
+                    <span>
+                        01
+                    </span>
+
+                    <h3>
+                        Orbital Motion
+                    </h3>
+
+                    <p>
+                        Planet positions are continuously calculated
+                        using orbital radius, speed and angular position.
+                    </p>
+
+                </article>
+
+
+                <!-- DISTANCE -->
+
+                <article>
+
+                    <span>
+                        02
+                    </span>
+
+                    <h3>
+                        Dynamic Distance
+                    </h3>
+
+                    <p>
+                        Mission distance is calculated from the changing
+                        coordinates of Earth and the selected planet.
+                    </p>
+
+                </article>
+
+
+                <!-- TRAVEL -->
+
+                <article>
+
+                    <span>
+                        03
+                    </span>
+
+                    <h3>
+                        Travel Estimate
+                    </h3>
+
+                    <p>
+                        AstroPath estimates journey duration using
+                        calculated route distance and a simulated
+                        spacecraft speed.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <span>
+            AstroPath
+        </span>
+
+        <p>
+            Educational orbital simulation using simplified astronomical modelling.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
